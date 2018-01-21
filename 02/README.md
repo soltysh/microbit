@@ -37,6 +37,7 @@ a = a + 1   # 2
 b = b * 2   # 5
 c = b - a   # 3
 d = c / a   # 1.5
+e = a % 5   # 1 - reszta z dzielenia
 ```
 
 Tekst za znakiem `#` oznacza komentarz, tzn. fragment kodu, który jest ignorowany
@@ -153,3 +154,69 @@ for x in "tekst":
 
 Wypisze na ekranie kolejne litery słowa `tekst`.
 
+# Microbit
+
+![microbit](img/microbit.gif)
+
+## Wyświetlacz
+
+Microbit posiada wyświetlacz 5x5 pikseli. Do obsługi wyświetlacza korzystamy ze zmiennej
+`display` a do dyspozycji mamy kilka metod:
+
+* `show(tekst|obraz)` - wyświetli tekst, bądź obrazek
+* `set_pixel(x, y, jasnosc)` - zapali piksel o współrzędnych (x, y) do podanej jasności (0-9).
+* `clear()` - wyczyści wyświetlacz
+
+Poniższy kod pokazuje jak wyświetlić tekst, gotowy obrazek, lub stworzyć własny i go wyświetlić.
+W tym ostatnim wypadku tworzymy pięć wierszy po pięć cyfr, gdzie każda cyfra oznacza jsność zapalenia
+diody (0 - wyłączona, 9 - maksymalna jasność). Istotne są dwukropki (`:`) na końcu każdego wiersza,
+gdyż one informują microbita o końcu wiersza.
+
+```python
+display.show("Hej Nikodem!")
+display.show(Image.COW)
+x = Image(
+"90009:"
+"09090:"
+"00900:"
+"09090:"
+"90009"
+)
+display.show(x)
+```
+
+## Przyciski
+
+Microbit posiada także dwa wbudowane przyciski oznaczone literami **A** i **B**. Każdy z nich posiada
+swoją zmienną, która umożliwia odczytanie stanu przycisku. I tak `button_a` odpowiada przyciskowi A,
+`button_b` - przyciskowi B. Do odczytania czy przycisk został naciśnięty wykorzystujemy metodę
+`was_pressed`:
+
+```python
+a = button_a.was_pressed()
+b = button_b.was_pressed()
+```
+
+## Akcelerometr
+
+Kolejna funkcja Microbita pozwala na odczytanie położenia urządzenia. Do tego celu wykorzystamy zmienną
+`accelerometer` w połączeniu z metodą `current_gesture`, która zwróci jedną z następujących wartości:
+
+* `up` - urządzenie jest skierowane do góry
+* `down` - urządzenie jest skierowane w dół
+* `left` - urządzenie jest skierowane w lewo
+* `right` - urządzenie jest skierowane w prawo
+* `face up` - urządzenie jest skierowane 'twarzą' do góry
+* `face down` - urządzenie jest skierowane `twarzą` w dół
+* `shake` - urządzenie zostało potrząśnięte
+
+Przykładowe wykorzystanie:
+
+```python
+accelerometer.current_gesture()
+```
+
+# Materiały zewnętrzne
+
+Polska dokumentacja do micro:bit-a znajduje się pod adresem http://microbit-micropython.readthedocs.io/pl/latest/,
+z kolei wersja angielska - https://microbit-micropython.readthedocs.io/en/latest/
