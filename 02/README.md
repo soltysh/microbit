@@ -216,6 +216,19 @@ Przykładowe wykorzystanie:
 accelerometer.current_gesture()
 ```
 
+## Radio
+
+Microbit pozwala na komunikację z innymi urządzeniami Microbit za pomocą wbudowanego modułu radia.
+Podstawowe operacje to wysłanie i odbiór wiadomości:
+
+```python
+import radio
+radio.on()              # włącza moduł radia
+radio.config(channel=7) # ustawia nr kanału
+radio.send("text")      # wysyła napis 'text'
+text = radio.receive()  # odbiera dane
+```
+
 # Materiały zewnętrzne
 
 Polska dokumentacja do micro:bit-a znajduje się pod adresem http://microbit-micropython.readthedocs.io/pl/latest/,
