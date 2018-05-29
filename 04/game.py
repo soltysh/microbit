@@ -11,8 +11,7 @@ platform_x, platform_y = 1, 4
 # pomocnicza wartosc, aby pilka spadala wolniej
 counter = 0
 # wlacz i skonfiguruj radio
-radio.on()
-radio.config(channel=7)
+# ???
 
 # glowna petla programu
 while True:
@@ -23,38 +22,7 @@ while True:
 
     ### obsluga radia i pilki ###
 
-    # jesli pilka jest na drugim microbicie
-    if not ball_present:
-        data = radio.receive()
-        if data:
-            ball_y = int(data)
-            if ball_y == -1:
-                ball_y = 0
-                ball_up = False
-                ball_present = True
-            if ball_y == 99:
-                display.show(Image.HAPPY)
-                break
-
-    # jesli pilka jest na naszym microbicie
-    if ball_present:
-        # pilka porusza sie raz na 5 wykonan tej petli
-        if counter%5 == 0:
-            if ball_y >= 0 and ball_y < 4:
-                # ruch pilki w gore
-                if ball_up:
-                    ball_y = ball_y - 1
-                # ruch pilki w dol
-                else:
-                    ball_y = ball_y + 1
-            # resetujemy licznik petli
-            counter = 0
-        # wyswietlenie pilki
-        if ball_y >= 0:
-            display.set_pixel(ball_x, ball_y, 9)
-        else:
-            radio.send(str(ball_y))
-            ball_present = False
+    # ???
 
     ### obsluga platformy ###
 
@@ -82,7 +50,6 @@ while True:
         # w przeciwnym razie konczymy gre
         else:
             display.show(Image.SAD)
-            radio.send("99")
             break
 
     # usypiamy petle na 50ms
